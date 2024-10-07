@@ -35,6 +35,7 @@ class DiscountRuleService
         $familyMembers = $this->family->getFamilyByClient($client->clientId)->memberIds;
 
         foreach ($familyMembers as $familyMember){
+            if($familyMember == $client->clientId) continue;
             $previouslyOrderedServicesByMember = $this->order->getOrdersByClient($familyMember)->serviceBookedIds;
 
             $cartServiceBookedEarlierByMember = false;
